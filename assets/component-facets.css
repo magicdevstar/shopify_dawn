@@ -224,10 +224,10 @@
   transition: text-decoration var(--duration-short) ease;
 }
 
-.facets__summary:hover .facets__summary-label {
+/* .facets__summary:hover .facets__summary-label {
   text-decoration: underline;
-  text-underline-offset: 0.3rem;
-}
+  text-underline-offset: 0.3rem; */
+/* } */
 
 .facets__and-helptext {
   color: rgba(var(--color-foreground), 0.5);
@@ -261,7 +261,7 @@
 }
 
 .facets__summary .icon-caret {
-  right: 0;
+  /* right: 0; */
 }
 
 .facets__display {

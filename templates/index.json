@@ -1,75 +1,143 @@
 {
   "sections": {
-    "image_banner": {
-      "type": "image-banner",
+    "banner_slider_3cpzLr": {
+      "type": "banner-slider",
       "blocks": {
-        "heading": {
-          "type": "heading",
+        "image_V9GdCn": {
+          "type": "image",
           "settings": {
-            "heading": "Browse our latest products",
-            "heading_size": "h0"
+            "image": "shopify:\/\/shop_images\/Screenshot_9.png"
           }
         },
-        "button": {
-          "type": "buttons",
+        "image_qam3UM": {
+          "type": "image",
           "settings": {
-            "button_label_1": "Shop all",
-            "button_link_1": "shopify:\/\/collections\/all",
-            "button_style_secondary_1": true,
-            "button_label_2": "",
-            "button_link_2": "",
-            "button_style_secondary_2": false
+            "image": "shopify:\/\/shop_images\/Banner1.png"
+          }
+        },
+        "image_LTAXbV": {
+          "type": "image",
+          "settings": {
+            "image": "shopify:\/\/shop_images\/Banner2.png"
           }
         }
       },
       "block_order": [
-        "heading",
-        "button"
+        "image_V9GdCn",
+        "image_qam3UM",
+        "image_LTAXbV"
+      ],
+      "settings": {}
+    },
+    "collection_list_yC7t4A": {
+      "type": "collection-list",
+      "blocks": {
+        "featured_collection_LMaUiD": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "men-coats-jackets"
+          }
+        },
+        "featured_collection_ztfKLc": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "women-coat-jackets"
+          }
+        },
+        "featured_collection_YYCNeA": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "men-t-shirts"
+          }
+        },
+        "featured_collection_pc9e8t": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "women-t-shirts"
+          }
+        },
+        "featured_collection_8KGYmg": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "men-pants"
+          }
+        },
+        "featured_collection_BbDD3V": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "women-pants"
+          }
+        },
+        "featured_collection_AX8dK6": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "dresses"
+          }
+        },
+        "featured_collection_Q9f6tJ": {
+          "type": "featured_collection",
+          "settings": {
+            "collection": "men-shorts"
+          }
+        }
+      },
+      "block_order": [
+        "featured_collection_LMaUiD",
+        "featured_collection_ztfKLc",
+        "featured_collection_YYCNeA",
+        "featured_collection_pc9e8t",
+        "featured_collection_8KGYmg",
+        "featured_collection_BbDD3V",
+        "featured_collection_AX8dK6",
+        "featured_collection_Q9f6tJ"
       ],
       "settings": {
-        "image_overlay_opacity": 40,
-        "image_height": "large",
-        "desktop_content_position": "bottom-center",
-        "show_text_box": false,
-        "image_behavior": "none",
-        "desktop_content_alignment": "center",
-        "color_scheme": "scheme-3",
-        "mobile_content_alignment": "center",
-        "stack_images_on_mobile": false,
-        "show_text_below": false
+        "title": "<strong>FEATURED CATEGORIES<\/strong>",
+        "heading_position": "middle",
+        "heading_size": "h2",
+        "image_ratio": "square",
+        "columns_desktop": 4,
+        "color_scheme": "",
+        "show_view_all": false,
+        "columns_mobile": "1",
+        "swipe_on_mobile": false,
+        "padding_top": 36,
+        "padding_bottom": 36
       }
     },
     "featured_collection": {
       "type": "featured-collection",
       "settings": {
-        "title": "Featured products",
+        "collection": "men",
+        "products_to_show": 4,
+        "title": "<strong>FEATURED PRODUCTS<\/strong>",
+        "heading_position": "middle",
         "heading_size": "h2",
         "description": "",
         "show_description": false,
         "description_style": "body",
-        "collection": "all",
-        "products_to_show": 8,
         "columns_desktop": 4,
-        "color_scheme": "scheme-1",
+        "enable_desktop_slider": false,
         "full_width": false,
         "show_view_all": true,
         "view_all_style": "solid",
-        "enable_desktop_slider": false,
-        "swipe_on_mobile": false,
+        "color_scheme": "scheme-1",
         "image_ratio": "adapt",
         "image_shape": "default",
         "show_secondary_image": true,
         "show_vendor": false,
         "show_rating": false,
         "quick_add": "none",
-        "columns_mobile": "2",
+        "columns_mobile": "1",
+        "swipe_on_mobile": true,
         "padding_top": 44,
         "padding_bottom": 36
       }
     }
   },
   "order": [
-    "image_banner",
+    "banner_slider_3cpzLr",
+    "collection_list_yC7t4A",
     "featured_collection"
   ]
 }
