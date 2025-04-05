@@ -1,0 +1,38 @@
+<div class="custom-slick-slider">
+  {% for block in section.blocks %}
+    <div class="slide-item">
+      <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt | escape }}">
+    </div>
+  {% endfor %}
+</div>
+{% schema %}
+{
+  "name": "Banner Slider",
+  "tag": "section",
+  "class": "slick-slider-section",
+  "max_blocks": 3,
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Banner Slider",
+      "blocks": [
+        {"type": "image"},
+        {"type": "image"},
+        {"type": "image"}
+      ]
+    }
+  ]
+}
+{% endschema %}

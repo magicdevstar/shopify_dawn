@@ -122,7 +122,7 @@
   {% if header_tag == 'sticky-header' %}
     data-sticky-type="{{ section.settings.sticky_header_type }}"
   {% endif %}
-  class="header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
+  class="relative_header header-wrapper color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator %} header-wrapper--border-bottom{% endif %}"
 >
   {%- liquid
     assign social_links = false
@@ -136,7 +136,7 @@
       assign localization_forms = true
     endif
   -%}
-  <header class="header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
+  <header class="header_no_py header header--{{ section.settings.logo_position }} header--mobile-{{ section.settings.mobile_logo_position }} page-width{% if section.settings.menu_type_desktop == 'drawer' %} drawer-menu{% endif %}{% if section.settings.menu != blank %} header--has-menu{% endif %}{% if has_app_block %} header--has-app{% endif %}{% if social_links %} header--has-social{% endif %}{% if shop.customer_accounts_enabled %} header--has-account{% endif %}{% if localization_forms %} header--has-localizations{% endif %}">
     {%- liquid
       if section.settings.menu != blank
         render 'header-drawer'
@@ -147,7 +147,7 @@
       endif
     -%}
 
-    {%- if section.settings.logo_position != 'middle-center' -%}
+    {% comment %} {%- if section.settings.logo_position != 'middle-center' -%} {% endcomment %}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
       {%- endif -%}
@@ -178,8 +178,9 @@
       {%- if request.page_type == 'index' -%}
         </h1>
       {%- endif -%}
-    {%- endif -%}
+    {% comment %} {%- endif -%} {% endcomment %}
 
+    {% render 'header-search', input_id: '' %}
     {%- liquid
       if section.settings.menu != blank
         if section.settings.menu_type_desktop == 'dropdown'
@@ -189,7 +190,7 @@
         endif
       endif
     %}
-
+    {% comment %} 
     {%- if section.settings.logo_position == 'middle-center' -%}
       {%- if request.page_type == 'index' -%}
         <h1 class="header__heading">
@@ -221,7 +222,7 @@
       {%- if request.page_type == 'index' -%}
         </h1>
       {%- endif -%}
-    {%- endif -%}
+    {%- endif -%} {% endcomment %}
 
     <div class="header__icons{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header__icons--localization header-localization{% endif %}">
       <div class="desktop-localization-wrapper">
@@ -247,8 +248,6 @@
           </localization-form>
         {%- endif -%}
       </div>
-      {% render 'header-search', input_id: 'Search-In-Modal' %}
-
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
@@ -260,11 +259,11 @@
               {%- if customer and customer.has_avatar? -%}
                 {{ customer | avatar }}
               {%- else -%}
-                <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+                <span class="svg-wrapper">{{ 'custom-profile-icon.svg' | inline_asset_content }}</span>
               {%- endif -%}
             </account-icon>
           {%- else -%}
-            <span class="svg-wrapper">{{ 'icon-account.svg' | inline_asset_content }}</span>
+            <span class="svg-wrapper">{{ 'custom-profile-icon.svg' | inline_asset_content }}</span>
           {%- endif -%}
           <span class="visually-hidden">
             {%- liquid
@@ -285,11 +284,14 @@
         {%- endcase -%}
       {%- endfor -%}
 
+      <a href="/pages/wishlist" class="header__icon link focus-inset" >
+          <span class="svg-wrapper">{{ 'custom-heart-icon.svg' | inline_asset_content }}</span>
+      </a>
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
-          <span class="svg-wrapper">{{ 'icon-cart-empty.svg' | inline_asset_content }}</span>
+          <span class="svg-wrapper">{{ 'custom-cart-icon.svg' | inline_asset_content }}</span>
         {% else %}
-          <span class="svg-wrapper">{{ 'icon-cart.svg' | inline_asset_content }}</span>
+          <span class="svg-wrapper">{{ 'custom-cart-icon.svg' | inline_asset_content }}</span>
         {% endif %}
         <span class="visually-hidden">{{ 'templates.cart.cart' | t }}</span>
         {%- if cart != empty -%}
@@ -303,6 +305,9 @@
       </a>
     </div>
   </header>
+  <div class="menu_background_absolute">
+  </div>
+  
 </{{ header_tag }}>
 
 {%- if settings.cart_type == 'notification' -%}
@@ -484,16 +489,8 @@
           "value": "top-center",
           "label": "t:sections.header.settings.logo_position.options__3.label"
         },
-        {
-          "value": "middle-left",
-          "label": "t:sections.header.settings.logo_position.options__1.label"
-        },
-        {
-          "value": "middle-center",
-          "label": "t:sections.header.settings.logo_position.options__4.label"
-        }
       ],
-      "default": "middle-left",
+      "default": "top-left",
       "label": "t:sections.header.settings.logo_position.label",
       "info": "t:sections.header.settings.logo_help.content"
     },

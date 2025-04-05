@@ -19,7 +19,7 @@
 {% endif %}
 
 <div
-  class="utility-bar color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
+  class="custom-utility-bar utility-bar color-{{ section.settings.color_scheme }} gradient{% if section.settings.show_line_separator and section.blocks.size > 0 %} utility-bar--bottom-border{% elsif section.settings.show_line_separator and section.settings.show_social and social_icons%} utility-bar--bottom-border-social-only{% endif %}{% if section.settings.enable_country_selector or section.settings.enable_language_selector %} header-localization{% endif %}"
 >
   <div class="page-width utility-bar__grid{% if announcement_bar and language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--3-col{% elsif language_country_selector or section.settings.show_social and social_icons %} utility-bar__grid--2-col{% endif %}">
     {%- if section.settings.show_social and social_icons -%}
@@ -40,7 +40,7 @@
             >
           {%- endif -%}
           <p class="announcement-bar__message h5">
-            <span>{{ section.blocks.first.settings.text | escape }}</span>
+            <span>{{ section.blocks.first.settings.text | escape |upcase }}</span>
             {%- if section.blocks.first.settings.link != blank -%}
               {{- 'icon-arrow.svg' | inline_asset_content -}}
             {%- endif -%}
@@ -51,7 +51,7 @@
         {%- endif -%}
       </div>
     {%- elsif section.blocks.size > 1 -%}
-      <slideshow-component
+      {% comment %} <slideshow-component
         class="announcement-bar"
         role="region"
         aria-roledescription="{{ 'sections.announcements.carousel' | t }}"
@@ -76,9 +76,8 @@
             aria-atomic="true"
             data-autoplay="{{ section.settings.auto_rotate }}"
             data-speed="{{ section.settings.change_slides_speed }}"
-          >
-            {%- for block in section.blocks -%}
-              <div
+          > {% endcomment %}
+              {% comment %} <div
                 class="slideshow__slide slider__slide grid__item grid--1-col"
                 id="Slide-{{ section.id }}-{{ forloop.index }}"
                 {{ block.shopify_attributes }}
@@ -86,33 +85,34 @@
                 aria-roledescription="{{ 'sections.announcements.announcement' | t }}"
                 aria-label="{{ forloop.index }} {{ 'general.slider.of' | t }} {{ forloop.length }}"
                 tabindex="-1"
+              > {% endcomment %}
+              <div
+                class="custom_announcement announcement-bar__announcement"
+                role="region"
+                aria-label="{{ 'sections.header.announcement' | t }}"
               >
-                <div
-                  class="announcement-bar__announcement"
-                  role="region"
-                  aria-label="{{ 'sections.header.announcement' | t }}"
-                >
+                {%- for block in section.blocks -%}
                   {%- if block.settings.text != blank -%}
                     {%- if block.settings.link != blank -%}
                       <a
                         href="{{ block.settings.link }}"
-                        class="announcement-bar__link link link--text focus-inset animate-arrow"
+                        class="custom_announcement_bar_link announcement-bar__link link link--text focus-inset animate-arrow"
                       >
                     {%- endif -%}
-                    <p class="announcement-bar__message h5">
-                      <span>{{ block.settings.text | escape }}</span>
-                      {%- if block.settings.link != blank -%}
+                    {% comment %} <p class="announcement-bar__message h5"> {% endcomment %}
+                      <span>{{ block.settings.text | escape | upcase}}</span>
+                      {% comment %} {%- if block.settings.link != blank -%}
                         {{- 'icon-arrow.svg' | inline_asset_content -}}
-                      {%- endif -%}
-                    </p>
+                      {%- endif -%} {% endcomment %}
+                    {% comment %} </p> {% endcomment %}
                     {%- if block.settings.link != blank -%}
                       </a>
                     {%- endif -%}
                   {%- endif -%}
-                </div>
+                {%- endfor -%}
               </div>
-            {%- endfor -%}
-          </div>
+              {% comment %} </div> {% endcomment %}
+          {% comment %} </div>
           <button
             type="button"
             class="slider-button slider-button--next"
@@ -125,7 +125,7 @@
             </span>
           </button>
         </div>
-      </slideshow-component>
+      </slideshow-component> {% endcomment %}
       {%- if request.design_mode -%}
         <script src="{{ 'theme-editor.js' | asset_url }}" defer="defer"></script>
         <style>

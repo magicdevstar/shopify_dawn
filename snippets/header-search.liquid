@@ -7,7 +7,14 @@
   Usage:
   {% render 'header-search', input_id: 'My-Id'%}
 {% endcomment %}
-
+<div class="desktop-search">
+  <span class="default-search__button">
+    <span>Search Products</span>
+    <span class="svg-wrapper custom-icon__size">
+      {{- 'custom-search-icon.svg' | inline_asset_content -}}
+    </span>
+  </span>
+{% comment %} 
 <details-modal class="header__search">
   <details>
     <summary
@@ -17,7 +24,7 @@
     >
       <span>
         <span class="svg-wrapper">
-          {{- 'icon-search.svg' | inline_asset_content -}}
+          {{- 'custom-search-icon.svg' | inline_asset_content -}}
         </span>
         <span class="svg-wrapper header__icon-close">
           {{- 'icon-close.svg' | inline_asset_content -}}
@@ -35,15 +42,16 @@
         class="search-modal__content{% if settings.inputs_shadow_vertical_offset != 0 and settings.inputs_shadow_vertical_offset < 0 %} search-modal__content-top{% else %} search-modal__content-bottom{% endif %}"
         tabindex="-1"
       >
+        {% endcomment %}
         {%- if settings.predictive_search_enabled -%}
           <predictive-search class="search-modal__form" data-loading-text="{{ 'accessibility.loading' | t }}">
         {%- else -%}
           <search-form class="search-modal__form">
-        {%- endif -%}
+        {%- endif -%} 
         <form action="{{ routes.search_url }}" method="get" role="search" class="search search-modal__form">
           <div class="field">
             <input
-              class="search__input field__input"
+              class="border-search__input search__input field__input"
               id="{{ input_id }}"
               type="search"
               name="q"
@@ -75,7 +83,7 @@
             </button>
             <button class="search__button field__button" aria-label="{{ 'general.search.search' | t }}">
               <span class="svg-wrapper">
-                {{- 'icon-search.svg' | inline_asset_content -}}
+                {{- 'custom-search-icon.svg' | inline_asset_content -}}
               </span>
             </button>
           </div>
@@ -93,6 +101,7 @@
         {%- else -%}
           </search-form>
         {%- endif -%}
+        {% comment %} 
         <button
           type="button"
           class="search-modal__close-button modal__close-button link link--text focus-inset"
@@ -105,4 +114,5 @@
       </div>
     </div>
   </details>
-</details-modal>
+</details-modal>{% endcomment %}
+</div>

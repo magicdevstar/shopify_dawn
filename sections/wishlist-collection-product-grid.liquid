@@ -1,0 +1,117 @@
+<div class="wishlist-page">
+  <div class="wishlist-header">
+    <h1>Wishlist</h1>
+  </div>
+  <div class="wishlist-body">
+    <span class="hidden wishlist_index"></span>
+  </div>
+</div>
+
+<script>
+  if (localStorage.wishlist) {
+    let wishlist = JSON.parse(localStorage.wishlist);
+    for (let i = 0; i < wishlist.length; i++) {
+      let product = wishlist[i];
+      $('.wishlist-body').append(
+        `<div class='wishlist-card' id="wishlist-card-${product.id}">
+          <div class="wishlist-content">
+            <div class="wishlist-deleteIcon" onclick="removeWishlist_byID(${product.id})" >&#215;</div>
+            <a href="/products/${product.handle}">
+              <image src="${product.images[0]}" class="wishlist-product-image" />
+            </a>
+            <div class="wishlist-product-title">${product.title}</div>
+            <div class="wishlist-product-price">$${product.price}</div>
+          </div>
+          <div class="wishlist-product-cartfield">
+            <div class="wishlist-product-select" id="wishlist-product-select-${product.id}"></div>
+            <form 
+              method="post" 
+              action="/cart/add" 
+              id="form-${product.id}" 
+              accept-charset="UTF-8" 
+              class="form" 
+              enctype="multipart/form-data" 
+              novalidate="novalidate" 
+              data-type="add-to-cart-form"
+            >
+              <input type="hidden" name="form_type" value="product">
+              <input type="hidden" name="quantity" value="1">
+              <input type="hidden" name="id" value="${product.variants[0].id}" class="product-variant-id">
+              <div class="product-form__buttons">
+                <button id="ProductSubmitButton-form-${product.id}" type="submit" name="add" class="custom_addcart-button product-form__submit button button--full-width button--primary">
+                  <span>Add to cart</span>
+                  <div class="loading__spinner hidden">
+                    <svg xmlns="http://www.w3.org/2000/svg" class="spinner" viewBox="0 0 66 66">
+                      <circle stroke-width="6" cx="33" cy="33" r="30" fill="none" class="path"></circle>
+                    </svg>
+                  </div>
+                </button>
+              </div>
+              <input type="hidden" name="product-id" value="${product.id}">
+            </form>
+          </div>
+        </div>`
+      );
+      if (product.variants.length > 1) {
+        $(`#wishlist-product-select-${product.id}`).append(
+          `
+            <div class="product-form__input product-form__input--dropdown">
+              <div class="select">
+                <select
+                  id="Option-${product.id}"
+                  class="select__select custom_select custom_option__select"
+                  name="options"
+                  form="form-${product.id}"
+                >
+                </select>
+                <span class="svg-wrapper">
+                  {{- 'icon-caret.svg' | inline_asset_content -}}
+                </span>
+              </div>
+            </div>
+          `
+        );
+        for (let k = 0; k < product.variants.length; k++) {
+          let option = product.variants[k];
+          $(`#Option-${product.id}`).append(
+            `
+              <option
+                id="Option-${product.id}-${k}"
+                value="${option.id}"
+              >
+                ${option.title}
+              </option>
+            `
+          );
+        }
+      }
+    }
+  } else {
+    $(".wishlist-body").addClass("wishlist__noitem");
+    $(".wishlist-body").append(
+      `
+        <h3>Your wishlist is empty</h3>        
+        <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+          <a
+            href="/collections/all"
+            class="custom__view_all_button button"
+            aria-label="View All Product"
+          >
+            Discover more
+          </a>
+        </div>
+      `
+    );
+  }
+
+  $(document).ready(function () {
+    $('select.custom_select').change(function () {
+      var optionID  = $(this).children('option:selected').val();
+      var productID = $(this).attr('id').split("-")[1]
+      {% comment %} console.log(optionID);
+      console.log(`form-${productID}`); {% endcomment %}
+      {% comment %} console.log($(`#form-${productID}>.product-variant-id`).val()); {% endcomment %}
+      $(`#form-${productID}>.product-variant-id`).val(optionID);
+    });
+  });
+</script>

@@ -1,0 +1,58 @@
+
+<!-- Slider HTML -->
+<div class="brand_custom-slick-slider">
+  <div class="brand_slick-slider-container">
+    {% for block in section.blocks %}
+      {% if block.settings.image %}
+        <div class="brand_slick-slide">
+          <img src="{{ block.settings.image | img_url: 'master' }}" alt="{{ block.settings.image.alt | escape }}" />
+        </div>
+      {% endif %}
+    {% endfor %}
+  </div>
+  <div class="center collection__view-all{% if settings.animations_reveal_on_scroll %} scroll-trigger animate--slide-in{% endif %}">
+    <a
+      href="/"
+      class="custom__view_all_button button"
+      aria-label=""
+    >
+      View All Brands
+    </a>
+  </div>
+</div>
+
+{% schema %}
+{
+  "name": "Brand Slick Slider",
+  "tag": "section",
+  "class": "section",
+  "max_blocks": 15,
+  "settings": [],
+  "blocks": [
+    {
+      "type": "image",
+      "name": "Slide Image",
+      "settings": [
+        {
+          "type": "image_picker",
+          "id": "image",
+          "label": "Image"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Brand Slick Slider",
+      "blocks": [
+        {"type": "image"},
+        {"type": "image"},
+        {"type": "image"},
+        {"type": "image"},
+        {"type": "image"},
+        {"type": "image"},
+      ]
+    }
+  ]
+}
+{% endschema %}

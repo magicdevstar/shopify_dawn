@@ -1,0 +1,48 @@
+
+<div
+  class="footer-block accordion-item grid__item footer-block--menu scroll-trigger animate--slide-in"
+    data-cascade
+    style="--animation-order: 3 ;"
+>
+  <h2 class="footer-block__heading inline-richtext">My Account</h2>
+  <ul class="footer-block__details-content list-unstyled">
+      <li>
+        <a
+          href="{{ routes.account_login_url }}"
+          class="link link--text list-menu__item list-menu__item--link"
+        >
+          Login
+        </a>
+      </li>
+      <li>
+        <a
+          href="{{ routes.account_register_url }}"
+          class="link link--text list-menu__item list-menu__item--link"
+        >
+          Become A Member
+        </a>
+      </li>
+      <li>
+        <a
+          href="#"
+          class="link link--text list-menu__item list-menu__item--link"
+        >
+          Art Supplies For Schools
+        </a>
+      </li>
+      <li class="social__icons">
+        <a href="https://www.facebook.com/arttoart.net/">
+          <span class="svg-wrapper">{{ 'custom-facebook-icon.svg' | inline_asset_content }}</span>
+        </a>
+        <a href="https://www.instagram.com/accounts/login">
+          <span class="svg-wrapper">{{ 'custom-instagram-icon.svg' | inline_asset_content }}</span>
+        </a>
+      </li>
+      <li class="payment__icons">
+        <span class="svg-wrapper-pay">{{ 'mastercard-svg.svg' | inline_asset_content }}</span>
+        <span class="svg-wrapper-pay">{{ 'paypal-svg.svg' | inline_asset_content }}</span>
+        <span class="svg-wrapper-pay">{{ 'visa-svg.svg' | inline_asset_content }}</span>
+        <span class="svg-wrapper-pay">{{ 'strip-svg.svg' | inline_asset_content }}</span>
+      </li>
+  </ul>
+</div>
