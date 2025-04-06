@@ -137,22 +137,20 @@
                       class="custom_facets__summary facets__summary caption-large focus-offset"
                       aria-label="{{ filter.label | escape }} ({{ 'products.facets.filters_selected.one' | t: count: filter.active_values.size }})"
                     >
-                      <div>
-                        <span class="facets__summary-label">
-                          {{- filter.label | escape }}
-                          {%- if filter_type == 'vertical' -%}
-                            <span class="facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
-                              ({{ filter.active_values.size }})</span
-                            >
-                          {%- endif -%}
-                        </span>
-                        {%- if filter_type == 'vertical' and filter.operator == 'AND' -%}
-                          <span class="facets__and-helptext">
-                            {{ 'products.facets.filter_and_operator_subtitle' | t }}
-                          </span>
+                      <span class="facets__summary-label">
+                        {{- filter.label | escape }}
+                        {%- if filter_type == 'vertical' -%}
+                          <span class="facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
+                            ({{ filter.active_values.size }})</span
+                          >
                         {%- endif -%}
-                        {{- 'icon-caret.double.svg' | inline_asset_content -}}
-                      </div>
+                      </span>
+                      {%- if filter_type == 'vertical' and filter.operator == 'AND' -%}
+                        <span class="facets__and-helptext">
+                          {{ 'products.facets.filter_and_operator_subtitle' | t }}
+                        </span>
+                      {%- endif -%}
+                      <span class="icon-caret__double">{{- 'icon-caret.double.svg' | inline_asset_content -}}</span>
                     </summary>
                     <div
                       id="Facet-{{ forloop.index }}-{{ section.id }}"
@@ -304,11 +302,9 @@
                       open
                     {% endif %}
                   >
-                    <summary class="facets__summary caption-large focus-offset">
-                      <div>
-                        <span>{{ filter.label | escape }}</span>
-                        {{- 'icon-caret.svg' | inline_asset_content -}}
-                      </div>
+                    <summary class="custom_facets__summary facets__summary caption-large focus-offset">
+                      <span>{{ filter.label | escape }}</span>
+                      <span class="icon-caret__double">{{- 'icon-caret.double.svg' | inline_asset_content -}}</span>
                     </summary>
                     <div
                       id="Facet-{{ forloop.index }}-{{ section.id }}"

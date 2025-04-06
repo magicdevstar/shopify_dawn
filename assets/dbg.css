@@ -611,11 +611,32 @@ details[open] > .header__menu-item {
 }
 .custom_facets__summary {
   background-color: #60bb46;
-  padding-right: 10px!important;
+  padding-right: 20px!important;
   padding-left: 20px!important;
   color: white!important;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
- 
+.icon-caret__double svg {
+  width: 15px;
+  height: 15px;
+} 
+
+.icon-caret__double {
+  transition: all .2s linear;
+}
+details[open]>summary>.icon-caret__double {
+  transform: rotate(180deg);
+}
+.custom_price__field {
+  border: 1px solid black;
+}
+
+.quick-add-modal .product__title>a h1 {
+  display: block !important;
+}
+
 
 /* Responive Custom CSS */
 @media screen and (max-width: 990px) {
