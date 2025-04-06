@@ -44,14 +44,14 @@ $(document).ready(function () {
     ],
   }); 
   
-  const product = $("#product-id-for-wishlist").text();
-  const productID = JSON.parse(product).id;
+  
   if(localStorage.wishlist) {
     let wishlist = JSON.parse(localStorage.wishlist);
     for( let i = 0 ; i < wishlist.length ; i ++ ) {
-      if( wishlist[i].id == productID ) {
-        $(`#wishlist-icon-${id}`).addClass("wishlist-active");
-        break;
+      let productID = wishlist[i].id;
+      wishlist_product = $(`#wishlist-icon-${productID}`).find('.hidden').text();
+      if(wishlist_product){
+        $(`#wishlist-icon-${productID}`).addClass("wishlist-active");
       }
     }
   } 
@@ -94,23 +94,21 @@ $(document).on("click", ".default-search__button", function () {
 });
 
 $(document).on("click", ".wishlist-icon", function () {
-  const product = $(this).find('#product-id-for-wishlist').text();
+  const product = $(this).find('.hidden').text();
   const productID = JSON.parse(product).id;
-  
   if(localStorage.wishlist) {
-    console.log("wishlist Exist");
     let wishlist = JSON.parse(localStorage.wishlist);
     let flog = true;
     for( let i = 0 ; i < wishlist.length ; i ++ ) {
       if( wishlist[i].id == productID ) {
         wishlist.splice(i, 1);
-        console.log("removed");
         $(`#wishlist-icon-${productID}`).removeClass("wishlist-active");        
         flog = false;
         break;
       }
     }
     if (flog) {
+      console.log(productID);
       // let wishlist_array = wishlist.push(JSON.parse(product));
       wishlist.push(JSON.parse(product));     
       $(`#wishlist-icon-${productID}`).addClass("wishlist-active");
@@ -149,6 +147,21 @@ const removeWishlist_byID = (id) => {
     localStorage.wishlist = "[ " +  wishlist_string + " ]"; 
   } else {
     localStorage.wishlist = "";
+    $(".wishlist-body").addClass("wishlist__noitem");
+    $('.wishlist-body').append(
+      `        
+        <h3>Your wishlist is empty</h3>        
+        <div class="center collection__view-all">
+          <a
+            href="/collections/all"
+            class="custom__view_all_button button"
+            aria-label="View All Product"
+          >
+            Discover more
+          </a>
+        </div>
+      `
+    )
   }
   $(`#wishlist-card-${id}`).addClass("hidden");
 }
