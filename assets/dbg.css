@@ -636,6 +636,37 @@ details[open]>summary>.icon-caret__double {
 .quick-add-modal .product__title>a h1 {
   display: block !important;
 }
+input[type='email'] {
+  border: 1px solid black!important;
+}
+input[type='password'] {
+  border: 1px solid black!important;
+}
+input[id='RegisterForm-LastName'] {
+  border: 1px solid black!important;
+}
+input[id='RegisterForm-FirstName'] {
+  border: 1px solid black!important;
+}
+.custom_button_background {
+  background-color: #60bb46!important;
+}
+.sign_with_shop {
+  background-color: #5433eb!important;
+  color: white!important;
+  padding: 10px 30px;
+  font-size: 18px!important;
+  font-weight: bold;
+  text-decoration: none!important;
+  text-align: center;
+}
+.footer {
+  border-top: none!important;
+  box-shadow: 0 -3px 10px 3px rgba(0, 0, 0, 0.2);
+  background-color: #f6f6f6!important;
+}
+
+
 
 
 /* Responive Custom CSS */

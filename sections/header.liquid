@@ -248,6 +248,9 @@
           </localization-form>
         {%- endif -%}
       </div>
+      <a href="/pages/wishlist" class="header__icon link focus-inset" >
+          <span class="svg-wrapper">{{ 'custom-heart-icon.svg' | inline_asset_content }}</span>
+      </a>
       {%- if shop.customer_accounts_enabled -%}
         <a
           href="{%- if customer -%}{{ routes.account_url }}{%- else -%}{{ routes.account_login_url }}{%- endif -%}"
@@ -283,10 +286,6 @@
             {% render block %}
         {%- endcase -%}
       {%- endfor -%}
-
-      <a href="/pages/wishlist" class="header__icon link focus-inset" >
-          <span class="svg-wrapper">{{ 'custom-heart-icon.svg' | inline_asset_content }}</span>
-      </a>
       <a href="{{ routes.cart_url }}" class="header__icon header__icon--cart link focus-inset" id="cart-icon-bubble">
         {% if cart == empty %}
           <span class="svg-wrapper">{{ 'custom-cart-icon.svg' | inline_asset_content }}</span>

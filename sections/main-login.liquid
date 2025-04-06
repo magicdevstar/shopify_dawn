@@ -71,6 +71,8 @@
   <h1 id="login" tabindex="-1">
     {{ 'customer.login_page.title' | t }}
   </h1>
+  <a class="sign_with_shop">Sign in with Shop</a>
+  <span>or</span>
   <div>
     {%- if recover_success == true -%}
       <h3 class="form__message" tabindex="-1" autofocus>
@@ -145,7 +147,7 @@
         </a>
       {%- endif -%}
 
-      <button>
+      <button class="custom_button_background">
         {{ 'customer.login_page.sign_in' | t }}
       </button>
 
