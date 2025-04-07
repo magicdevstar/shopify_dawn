@@ -650,6 +650,7 @@ input[id='RegisterForm-FirstName'] {
 }
 .custom_button_background {
   background-color: #60bb46!important;
+  color: white!important;
 }
 .sign_with_shop {
   background-color: #5433eb!important;
@@ -665,7 +666,15 @@ input[id='RegisterForm-FirstName'] {
   box-shadow: 0 -3px 10px 3px rgba(0, 0, 0, 0.2);
   background-color: #f6f6f6!important;
 }
-
+.black_border_input {
+  border: 1px solid black!important;
+}
+.custom-select-box {
+  border:1px solid black!important ;
+}
+.custom-select-box>.svg-wrapper {
+  right: 20px!important;
+}
 
 
 

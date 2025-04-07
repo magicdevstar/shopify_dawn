@@ -25,6 +25,7 @@
 
     <div data-address>
       <button
+        class="custom_button_background"
         type="button"
         aria-expanded="false"
         aria-controls="AddAddress"
@@ -37,6 +38,7 @@
           <div class="field">
             <input
               type="text"
+              class="black_border_input"
               id="AddressFirstNameNew"
               name="address[first_name]"
               value="{{ form.first_name }}"
@@ -48,6 +50,7 @@
           <div class="field">
             <input
               type="text"
+              class="black_border_input"
               id="AddressLastNameNew"
               name="address[last_name]"
               value="{{ form.last_name }}"
@@ -59,6 +62,7 @@
           <div class="field">
             <input
               type="text"
+              class="black_border_input"
               id="AddressCompanyNew"
               name="address[company]"
               value="{{ form.company }}"
@@ -70,6 +74,7 @@
           <div class="field">
             <input
               type="text"
+              class="black_border_input"
               id="AddressAddress1New"
               name="address[address1]"
               value="{{ form.address1 }}"
@@ -81,6 +86,7 @@
           <div class="field">
             <input
               type="text"
+              class="black_border_input"
               id="AddressAddress2New"
               name="address[address2]"
               value="{{ form.address2 }}"
@@ -92,6 +98,7 @@
           <div class="field">
             <input
               type="text"
+              class="black_border_input"
               id="AddressCityNew"
               name="address[city]"
               value="{{ form.city }}"
@@ -133,6 +140,7 @@
           <div class="field">
             <input
               type="text"
+              class="black_border_input"
               id="AddressZipNew"
               name="address[zip]"
               value="{{ form.zip }}"
@@ -145,6 +153,7 @@
           <div class="field">
             <input
               type="tel"
+              class="black_border_input"
               id="AddressPhoneNew"
               name="address[phone]"
               value="{{ form.phone }}"
@@ -158,9 +167,9 @@
             <label for="address_default_address_new">{{ 'customer.addresses.set_default' | t }}</label>
           </div>
           <div>
-            <button>{{ 'customer.addresses.add' | t }}</button>
-            <button type="reset">{{ 'customer.addresses.cancel' | t }}</button>
-          </div>
+            <button class="custom_button_background">{{ 'customer.addresses.add' | t }}</button>
+            <button class="custom_button_background" type="reset">{{ 'customer.addresses.cancel' | t }}</button>
+          </div> 
         {%- endform -%}
       </div>
     </div>
@@ -174,6 +183,7 @@
           {{ address | format_address }}
           <button
             type="button"
+            class="custom_button_background"
             id="EditFormButton_{{ address.id }}"
             aria-label="{{ 'customer.addresses.edit_address' | t }} {{ forloop.index }}"
             aria-controls="EditAddress_{{ address.id }}"
@@ -184,6 +194,7 @@
           </button>
           <button
             type="button"
+            class="custom_button_background"
             aria-label="{{ 'customer.addresses.delete' | t }} {{ forloop.index }}"
             data-target="{{ address.url }}"
             data-confirm-message="{{ 'customer.addresses.delete_confirm' | t }}"
@@ -195,7 +206,8 @@
             {%- form 'customer_address', address -%}
               <div class="field">
                 <input
-                  type="text"
+                  type="text"                  
+                  class="black_border_input"
                   id="AddressFirstName_{{ form.id }}"
                   name="address[first_name]"
                   value="{{ form.first_name }}"
@@ -206,7 +218,8 @@
               </div>
               <div class="field">
                 <input
-                  type="text"
+                  type="text"                  
+                  class="black_border_input"
                   id="AddressLastName_{{ form.id }}"
                   name="address[last_name]"
                   value="{{ form.last_name }}"
@@ -217,7 +230,8 @@
               </div>
               <div class="field">
                 <input
-                  type="text"
+                  type="text"                  
+                  class="black_border_input"
                   id="AddressCompany_{{ form.id }}"
                   name="address[company]"
                   value="{{ form.company }}"
@@ -228,7 +242,8 @@
               </div>
               <div class="field">
                 <input
-                  type="text"
+                  type="text"                  
+                  class="black_border_input"
                   id="AddressAddress1_{{ form.id }}"
                   name="address[address1]"
                   value="{{ form.address1 }}"
@@ -239,7 +254,8 @@
               </div>
               <div class="field">
                 <input
-                  type="text"
+                  type="text"                  
+                  class="black_border_input"
                   id="AddressAddress2_{{ form.id }}"
                   name="address[address2]"
                   value="{{ form.address2 }}"
@@ -250,7 +266,8 @@
               </div>
               <div class="field">
                 <input
-                  type="text"
+                  type="text"                  
+                  class="black_border_input"
                   id="AddressCity_{{ form.id }}"
                   name="address[city]"
                   value="{{ form.city }}"
@@ -263,7 +280,7 @@
                 <label for="AddressCountry_{{ form.id }}">
                   {{ 'customer.addresses.country' | t }}
                 </label>
-                <div class="select">
+                <div class="select custom-select-box">
                   <select
                     id="AddressCountry_{{ form.id }}"
                     name="address[country]"
@@ -283,7 +300,7 @@
                 <label for="AddressProvince_{{ form.id }}">
                   {{ 'customer.addresses.province' | t }}
                 </label>
-                <div class="select">
+                <div class="select custom-select-box">
                   <select
                     id="AddressProvince_{{ form.id }}"
                     name="address[province]"
@@ -298,7 +315,8 @@
               <div class="field">
                 <input
                   type="text"
-                  id="AddressZip_{{ form.id }}"
+                  id="AddressZip_{{ form.id }}"                  
+                  class="black_border_input"
                   name="address[zip]"
                   value="{{ form.zip }}"
                   autocapitalize="characters"
@@ -310,7 +328,8 @@
               <div class="field">
                 <input
                   type="tel"
-                  id="AddressPhone_{{ form.id }}"
+                  id="AddressPhone_{{ form.id }}"                  
+                  class="black_border_input"
                   name="address[phone]"
                   value="{{ form.phone }}"
                   autocomplete="tel"
@@ -325,8 +344,8 @@
                 </label>
               </div>
               <div>
-                <button>{{ 'customer.addresses.update' | t }}</button>
-                <button type="reset">{{ 'customer.addresses.cancel' | t }}</button>
+                <button class="custom_button_background">{{ 'customer.addresses.update' | t }}</button>
+                <button class="custom_button_background" type="reset">{{ 'customer.addresses.cancel' | t }}</button>
               </div>
             {%- endform -%}
           </div>
