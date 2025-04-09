@@ -1,0 +1,70 @@
+<details
+  id="Details-Category-{{ section.id }}"
+  class="{% if filter_type == 'horizontal' %}disclosure-has-popup facets__disclosure{% else %} facets__disclosure-vertical{% endif %} js-filter"
+  data-index="{{ forloop.index }}"
+  {% if filter_type == 'vertical' and forloop.index == 1 %}
+    open
+  {% endif %}
+>
+  <summary
+    class="custom_facets__summary facets__summary caption-large focus-offset"
+  >
+    <span class="facets__summary-label">
+      Categories
+      {%- if filter_type == 'vertical' -%}
+        <span class="facets__selected{% if filter.active_values.size == 0 %} hidden{% endif %}">
+          ({{ filter.active_values.size }})</span
+        >
+      {%- endif -%}
+    </span>
+    {%- if filter_type == 'vertical' and filter.operator == 'AND' -%}
+      <span class="facets__and-helptext">
+        {{ 'products.facets.filter_and_operator_subtitle' | t }}
+      </span>
+    {%- endif -%}
+    <span class="icon-caret__double">{{- 'icon-caret.double.svg' | inline_asset_content -}}</span>
+  </summary>
+  <div
+    id="Facet-4-{{ section.id }}"
+    class="parent-display {% if filter_type == 'horizontal' %}facets__display{% else %}facets__display-vertical{% endif %}"
+  >
+    {%- if filter_type != 'vertical' -%}
+      <div class="facets__header">
+        <div>
+          <span class="facets__selected">
+            {{- 'products.facets.filters_selected' | t: count: filter.active_values.size -}}
+          </span>
+          {%- if filter.operator == 'AND' -%}
+            <span class="facets__and-helptext">
+              {{ 'products.facets.filter_and_operator_subtitle' | t }}
+            </span>
+          {%- endif -%}
+        </div>
+        <facet-remove>
+          <a href="{{ filter.url_to_remove }}" class="facets__reset link underlined-link">
+            {{ 'products.facets.reset' | t }}
+          </a>
+        </facet-remove>
+      </div>
+    {%- endif -%}
+    <fieldset class="facets-wrap parent-wrap {% if filter_type == 'vertical' %} facets-wrap-vertical{% endif %}">
+      <div class="filter-nav__wrap">
+        {% for link in linklists['main-menu'].links %}
+          {% assign is_active = false %}
+          {% for child_link in link.links %}
+            {% if child_link.url == resuls.url %}
+              {% assign is_active = true %}
+            {% endif %}
+          {% endfor %}
+
+          <li><a href="{{link.url}}" class="menu-item {% if is_active %}active{% endif %}">{{ link.title }}</a></li>
+          <ul class="child-nav__wrap hidden {% if is_active %}show{% endif %}">
+            {% for child_link in link.links %}
+              <li><a class="submenu-item" href="{{child_link.url}}">{{ child_link.title }}</a></li>
+            {% endfor %}
+          </ul>
+        {% endfor %}
+      </div>
+    </fieldset>
+  </div>
+</details>

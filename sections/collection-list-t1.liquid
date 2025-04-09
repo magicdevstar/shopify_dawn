@@ -24,8 +24,6 @@
     endif
   -%}
   {% for link in linklists['main-menu'].links %}
-    
-    {% comment %} <script>console.log("{{ link.title }}")</script> {% endcomment %}
     {% if link.title == collection.title %}
     {% comment %} {%- paginate link.links by paginate_by -%} {% endcomment %}
       <ul
