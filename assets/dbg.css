@@ -675,8 +675,33 @@ input[id='RegisterForm-FirstName'] {
 .custom-select-box>.svg-wrapper {
   right: 20px!important;
 }
-
-
+.boost-sd__search-form-wrapper {
+  display: none;
+}
+#boost-sd__search-result-toolbar-panel-collections {
+  display: none;
+}
+#boost-sd__search-result-toolbar-panel-pages {
+  display: none;
+}
+.child-nav__wrap.hidden.show {
+  display: block!important;
+  margin: 0px;
+}
+.none-liststyle {
+  list-style-type: none
+}
+.filter-nav__wrap a {
+  padding: 4px 0;
+  font-size: 15px;
+  transition: all .2s;
+  display: inline-block;
+  text-decoration: none;
+  color: #000;
+}
+.filter-nav__wrap a.active {
+  font-weight: 700;
+}
 
 /* Responive Custom CSS */
 @media screen and (max-width: 990px) {
