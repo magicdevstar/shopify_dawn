@@ -702,6 +702,27 @@ input[id='RegisterForm-FirstName'] {
 .filter-nav__wrap a.active {
   font-weight: 700;
 }
+.call-box {
+  display: flex;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  background-color: #60bb46;
+  border: 1px solid #60bb46;
+}
+.boost-sd__button--quick-view {
+  width: auto!important;
+  background-color: white!important;
+  border: 1px solid #60bb46;
+}
+.boost-sd__button--select-option {
+  background-color: #60bb46!important;
+  color: white!important;
+}
+.boost-sd__product-link-image {
+  border: 1px solid #60bb46;
+}
+
 
 /* Responive Custom CSS */
 @media screen and (max-width: 990px) {
